@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official Daman Games login and registration page. Sign up now and get an instant bonus of ₹85! Join millions of players and start winning today.">
+    <meta name="keywords" content="Daman Games, Daman login, Daman signup, Daman register, Damanclub, Daman referral, Daman Games official, Daman bonus, Daman Games ₹85 bonus">
+    <meta name="author" content="Your Name">
+    <title>Daman Games Login - Sign Up & Get ₹85 Bonus Instantly!</title>
+    <link rel="icon" href="the_logo.jpg" type="image/jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #0f0c29; /* Dark gradient background */
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Particle Animation Background */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            width: 90%;
+            animation: fadeIn 1.5s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-in-out;
+            background: linear-gradient(135deg, #ff6f61, #ffdd57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            animation: slideIn 1.2s ease-in-out;
+        }
+
+        .bonus-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffdd57;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .countdown {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ff6f61;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .button-group button {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .button-group button.register {
+            background: linear-gradient(135deg, #28a745, #218838);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .button-group button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+        }
+
+        .button-group button.register:hover {
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            p {
+                font-size: 16px;
+            }
+            .bonus-text {
+                font-size: 24px;
+            }
+            .countdown {
+                font-size: 20px;
+            }
+            .button-group button {
+                font-size: 16px;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Animation Background -->
+    <canvas id="particles"></canvas>
+
+    <div class="container">
+        <h1>Welcome to Daman Games</h1>
+        <p>Join millions of players and experience the thrill of Daman Games. Sign up now and get an instant bonus of <span class="bonus-text">₹85</span>!</p>
+        <div class="countdown" id="countdown">Offer ends in 10:00 minutes!</div>
+        <div class="button-group">
+            <button class="login" onclick="redirectToDaman()">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+            <button class="register" onclick="redirectToDaman()">
+                <i class="fas fa-user-plus"></i> Sign Up & Get ₹85 Bonus
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function redirectToDaman() {
+            // Your Daman Games referral link
+            const referralLink = "https://damanclub.in/#/register?invitationCode=3652515130413";
+            // Redirect the user to the referral link
+            window.location.href = referralLink;
+        }
+
+        // Countdown Timer
+        let timeLeft = 600; // 10 minutes in seconds
+        const countdownElement = document.getElementById("countdown");
+
+        const timer = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                countdownElement.textContent = "Offer has ended!";
+            } else {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                countdownElement.textContent = `Offer ends in ${minutes}:${seconds.toString().padStart(2, '0')} minutes!`;
+                timeLeft--;
+            }
+        }, 1000);
+
+        // Particle Animation
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray = [];
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+                    this.directionY = -this.directionY;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = Math.random() * 2 + 1;
+                let x = Math.random() * (canvas.width - size * 2) + size;
+                let y = Math.random() * (canvas.height - size * 2) + size;
+                let directionX = Math.random() * 0.4 - 0.2;
+                let directionY = Math.random() * 0.4 - 0.2;
+                let color = "#ffffff";
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+        }
+
+        init();
+        animate();
+
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
+    </script>
+</body>
+</html>
